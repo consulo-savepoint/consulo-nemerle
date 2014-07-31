@@ -22,11 +22,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.jetbrains.annotations.NotNull;
+import org.mustbe.consulo.dotnet.DotNetTarget;
 import org.mustbe.consulo.dotnet.compiler.DotNetCompilerMessage;
 import org.mustbe.consulo.dotnet.compiler.DotNetCompilerOptionsBuilder;
 import org.mustbe.consulo.dotnet.compiler.DotNetCompilerUtil;
 import org.mustbe.consulo.dotnet.compiler.DotNetMacros;
-import org.mustbe.consulo.dotnet.module.MainConfigurationLayer;
 import org.mustbe.consulo.dotnet.module.extension.DotNetModuleExtension;
 import org.mustbe.consulo.nemerle.module.extension.NemerleModuleExtension;
 import com.intellij.execution.configurations.GeneralCommandLine;
@@ -58,18 +58,14 @@ public class NemerleCompilerOptionsBuilder implements DotNetCompilerOptionsBuild
 
 	@NotNull
 	@Override
-	public GeneralCommandLine createCommandLine(@NotNull Module module, @NotNull VirtualFile[] results, @NotNull String layerName, @NotNull
-	MainConfigurationLayer dotNetLayer) throws IOException
+	public GeneralCommandLine createCommandLine(@NotNull Module module, @NotNull VirtualFile[] results,
+			@NotNull DotNetModuleExtension<?> extension) throws IOException
 	{
 		Sdk sdk = ModuleUtilCore.getSdk(module, NemerleModuleExtension.class);
 		assert sdk != null;
 
-		DotNetModuleExtension<?> extension = ModuleUtilCore.getExtension(module, DotNetModuleExtension.class);
-
-		assert extension != null;
-
 		String target = null;
-		switch(dotNetLayer.getTarget())
+		switch(extension.getTarget())
 		{
 			case EXECUTABLE:
 				target = "exe";
@@ -87,10 +83,10 @@ public class NemerleCompilerOptionsBuilder implements DotNetCompilerOptionsBuild
 		arguments.add("-target:" + target);
 		arguments.add("-nologo");
 	//	arguments.add("-nostdlib");
-		String outputFile = DotNetMacros.extract(module, layerName, dotNetLayer);
+		String outputFile = DotNetMacros.extract(module, extension);
 		arguments.add("-out:" + FileUtil.toSystemIndependentName(outputFile));
 
-		val dependFiles = DotNetCompilerUtil.collectDependencies(module, true);
+		val dependFiles = DotNetCompilerUtil.collectDependencies(module, DotNetTarget.LIBRARY, true);
 		if(!dependFiles.isEmpty())
 		{
 			arguments.add("-reference:" + StringUtil.join(dependFiles, new Function<File, String>()
