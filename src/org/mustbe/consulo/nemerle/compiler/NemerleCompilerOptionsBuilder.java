@@ -26,7 +26,7 @@ import org.mustbe.consulo.dotnet.DotNetTarget;
 import org.mustbe.consulo.dotnet.compiler.DotNetCompilerMessage;
 import org.mustbe.consulo.dotnet.compiler.DotNetCompilerOptionsBuilder;
 import org.mustbe.consulo.dotnet.compiler.DotNetCompilerUtil;
-import org.mustbe.consulo.dotnet.compiler.DotNetMacros;
+import org.mustbe.consulo.dotnet.compiler.DotNetMacroUtil;
 import org.mustbe.consulo.dotnet.module.extension.DotNetModuleExtension;
 import org.mustbe.consulo.nemerle.module.extension.NemerleModuleExtension;
 import com.intellij.execution.configurations.GeneralCommandLine;
@@ -83,7 +83,7 @@ public class NemerleCompilerOptionsBuilder implements DotNetCompilerOptionsBuild
 		arguments.add("-target:" + target);
 		arguments.add("-nologo");
 	//	arguments.add("-nostdlib");
-		String outputFile = DotNetMacros.extract(module, extension);
+		String outputFile = DotNetMacroUtil.expandOutputFile(extension);
 		arguments.add("-out:" + FileUtil.toSystemIndependentName(outputFile));
 
 		val dependFiles = DotNetCompilerUtil.collectDependencies(module, DotNetTarget.LIBRARY, true);

@@ -35,6 +35,7 @@ import com.intellij.openapi.projectRoots.SdkModel;
 import com.intellij.openapi.projectRoots.SdkModificator;
 import com.intellij.openapi.projectRoots.SdkType;
 import com.intellij.openapi.roots.OrderRootType;
+import com.intellij.openapi.roots.types.BinariesOrderRootType;
 
 /**
  * @author VISTALL
@@ -105,7 +106,7 @@ public class NemerleSdkType extends SdkType
 	@Override
 	public boolean isRootTypeApplicable(OrderRootType type)
 	{
-		return type == OrderRootType.CLASSES;
+		return type == BinariesOrderRootType.getInstance();
 	}
 
 	@NotNull
