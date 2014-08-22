@@ -25,7 +25,7 @@ import org.mustbe.consulo.nemerle.lang.NemerleFileType;
 import org.mustbe.consulo.nemerle.sdk.NemerleSdkType;
 import com.intellij.openapi.fileTypes.LanguageFileType;
 import com.intellij.openapi.projectRoots.SdkType;
-import com.intellij.openapi.roots.ModifiableRootModel;
+import com.intellij.openapi.roots.ModuleRootLayer;
 
 /**
  * @author VISTALL
@@ -33,7 +33,7 @@ import com.intellij.openapi.roots.ModifiableRootModel;
  */
 public class NemerleModuleExtension extends ModuleExtensionWithSdkImpl<NemerleModuleExtension> implements DotNetModuleLangExtension<NemerleModuleExtension>
 {
-	public NemerleModuleExtension(@NotNull String id, @NotNull ModifiableRootModel module)
+	public NemerleModuleExtension(@NotNull String id, @NotNull ModuleRootLayer module)
 	{
 		super(id, module);
 	}
