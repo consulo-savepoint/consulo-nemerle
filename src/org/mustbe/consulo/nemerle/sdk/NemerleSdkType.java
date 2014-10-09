@@ -22,17 +22,12 @@ import java.util.Arrays;
 import javax.swing.Icon;
 
 import org.consulo.lombok.annotations.Logger;
-import org.jdom.Element;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.mustbe.consulo.nemerle.NemerleIcons;
 import com.intellij.execution.ExecutionException;
 import com.intellij.execution.process.ProcessOutput;
 import com.intellij.execution.util.ExecUtil;
-import com.intellij.openapi.projectRoots.AdditionalDataConfigurable;
-import com.intellij.openapi.projectRoots.SdkAdditionalData;
-import com.intellij.openapi.projectRoots.SdkModel;
-import com.intellij.openapi.projectRoots.SdkModificator;
 import com.intellij.openapi.projectRoots.SdkType;
 import com.intellij.openapi.roots.OrderRootType;
 import com.intellij.openapi.roots.types.BinariesOrderRootType;
@@ -96,13 +91,6 @@ public class NemerleSdkType extends SdkType
 		return NemerleIcons.Nemerle;
 	}
 
-	@Nullable
-	@Override
-	public AdditionalDataConfigurable createAdditionalDataConfigurable(SdkModel sdkModel, SdkModificator sdkModificator)
-	{
-		return null;
-	}
-
 	@Override
 	public boolean isRootTypeApplicable(OrderRootType type)
 	{
@@ -114,11 +102,5 @@ public class NemerleSdkType extends SdkType
 	public String getPresentableName()
 	{
 		return "Nemerle";
-	}
-
-	@Override
-	public void saveAdditionalData(SdkAdditionalData sdkAdditionalData, Element element)
-	{
-
 	}
 }

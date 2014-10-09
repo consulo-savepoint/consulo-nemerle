@@ -26,6 +26,7 @@ import org.mustbe.consulo.nemerle.sdk.NemerleSdkType;
 import com.intellij.openapi.fileTypes.LanguageFileType;
 import com.intellij.openapi.projectRoots.SdkType;
 import com.intellij.openapi.roots.ModuleRootLayer;
+import com.intellij.psi.PsiElement;
 
 /**
  * @author VISTALL
@@ -43,6 +44,13 @@ public class NemerleModuleExtension extends ModuleExtensionWithSdkImpl<NemerleMo
 	public Class<? extends SdkType> getSdkTypeClass()
 	{
 		return NemerleSdkType.class;
+	}
+
+	@NotNull
+	@Override
+	public PsiElement[] getEntryPointElements()
+	{
+		return PsiElement.EMPTY_ARRAY;
 	}
 
 	@NotNull
