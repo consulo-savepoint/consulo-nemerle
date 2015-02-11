@@ -18,6 +18,7 @@ package org.mustbe.consulo.nemerle.module.extension;
 
 import org.consulo.module.extension.impl.ModuleExtensionWithSdkImpl;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.mustbe.consulo.dotnet.compiler.DotNetCompilerOptionsBuilder;
 import org.mustbe.consulo.dotnet.module.extension.DotNetModuleLangExtension;
 import org.mustbe.consulo.nemerle.compiler.NemerleCompilerOptionsBuilder;
@@ -58,6 +59,13 @@ public class NemerleModuleExtension extends ModuleExtensionWithSdkImpl<NemerleMo
 	public LanguageFileType getFileType()
 	{
 		return NemerleFileType.INSTANCE;
+	}
+
+	@Nullable
+	@Override
+	public String getAssemblyTitle()
+	{
+		return null;
 	}
 
 	@NotNull

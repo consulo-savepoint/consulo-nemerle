@@ -44,13 +44,6 @@ public class NemerleSdkType extends SdkType
 		super("NEMERLE_SDK");
 	}
 
-	@Nullable
-	@Override
-	public String suggestHomePath()
-	{
-		return null;
-	}
-
 	@Override
 	public boolean isValidSdkHome(String s)
 	{
