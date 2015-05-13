@@ -86,7 +86,7 @@ public class NemerleCompilerOptionsBuilder implements DotNetCompilerOptionsBuild
 		String outputFile = DotNetMacroUtil.expandOutputFile(extension);
 		arguments.add("-out:" + FileUtil.toSystemIndependentName(outputFile));
 
-		val dependFiles = DotNetCompilerUtil.collectDependencies(module, DotNetTarget.LIBRARY, true);
+		val dependFiles = DotNetCompilerUtil.collectDependencies(module, DotNetTarget.LIBRARY, true, DotNetCompilerUtil.ACCEPT_ALL);
 		if(!dependFiles.isEmpty())
 		{
 			arguments.add("-reference:" + StringUtil.join(dependFiles, new Function<File, String>()
